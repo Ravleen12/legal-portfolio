@@ -50,10 +50,7 @@
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
     }
-    /* Hover only on non-touch devices so mobile tap-toggle isn't overridden by sticky :hover */
-    html:not(.touch-device) .flip-card:hover .flip-card-inner,
-    html:not(.touch-device) .flip-card:focus-within .flip-card-inner,
-    .flip-card.flip-card-flipped .flip-card-inner {
+    .flip-card.is-flipped .flip-card-inner {
       transform: rotateY(180deg);
     }
     .flip-card-front,
@@ -123,7 +120,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">Legal Translation Gallery</h2>
-        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Hover or tap a card to flip: legalese → plain English.</p>
+        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Tap a card to flip: legalese → plain English.</p>
       </div>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card 1: Contract Law → Lucy v. Zehmer -->
@@ -136,7 +133,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … the manifestation of mutual assent requisite to contract formation is measured by an objective standard; the secret, unexpressed intent of a party is immaterial. A meeting of the minds is determined by the outward expression of the parties … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -161,7 +158,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … a business corporation is organized and carried on primarily for the profit of the stockholders. The powers of the directors are to be employed for that end. The discretion of directors is to be exercised in the choice of means to attain that end … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -186,7 +183,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … liability for defective products may attach under theories of negligence, strict liability, or breach of warranty. A defendant may be liable where it knew or should have known that its product posed an unreasonable risk of harm … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -211,7 +208,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … internal controls over financial reporting … shall include policies and procedures that provide reasonable assurance regarding the reliability of financial reporting … and that management’s assessment of such controls is properly documented … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -236,7 +233,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … naturalization for certain aliens who served in the United States Armed Forces or in certain irregular forces; treatment of service in irregular forces as service in the United States Armed Forces for purposes of naturalization … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -261,7 +258,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … the licensor grants to the licensee a non-exclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -296,18 +293,11 @@
     </div>
   </footer>
   <script>
-    (function() {
-      var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      if (isTouch) {
-        document.documentElement.classList.add('touch-device');
-      }
-
-      document.querySelectorAll('.flip-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-          this.classList.toggle('flip-card-flipped');
-        });
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.classList.toggle('is-flipped');
       });
-    })();
+    });
   </script>
 </body>
 </html>
