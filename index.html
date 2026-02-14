@@ -93,9 +93,62 @@
     .timeline-item.is-visible .timeline-dot {
       transform: scale(1.25);
     }
+
+    /* Sticky nav & tab panels */
+    .nav-tab {
+      position: relative;
+    }
+    .nav-tab.active {
+      color: #f8f6f1;
+    }
+    .nav-tab.active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background: #f8f6f1;
+    }
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.is-active {
+      display: block;
+    }
+
+    /* Clarity Card (glossary pop) */
+    .clarity-card {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+    }
+    .clarity-card.is-open {
+      max-height: 80vh;
+      opacity: 1;
+    }
+    .clarity-card.is-open #clarity-definition {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
   </style>
 </head>
 <body class="font-body text-navy bg-cream antialiased">
+  <!-- Sticky Navigation -->
+  <nav class="sticky top-0 z-50 bg-navy border-b border-cream/10 shadow-sm" aria-label="Main">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-4">
+        <a href="#about" class="nav-tab active font-display text-cream/90 text-sm sm:text-base tracking-wide" data-tab="about" id="nav-about">About</a>
+        <a href="#gallery" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="gallery" id="nav-gallery">Case Gallery</a>
+        <a href="#glossary" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="glossary" id="nav-glossary">Clarity Glossary</a>
+        <a href="#timeline" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="timeline" id="nav-timeline">Legal Timeline</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Panel: About -->
+  <div id="panel-about" class="tab-panel is-active">
   <!-- Hero -->
   <header class="min-h-screen flex flex-col justify-center relative overflow-hidden">
     <div class="absolute inset-0 bg-navy" aria-hidden="true"></div>
@@ -106,7 +159,7 @@
         Bridging the gap between complex law and everyday understanding.
       </h1>
       <p class="font-display text-cream text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight">Ravleen Gill</p>
-      <a href="#gallery" class="inline-block mt-16 text-cream/90 hover:text-cream border border-cream/40 hover:border-cream px-8 py-3 font-display text-sm tracking-widest uppercase transition-colors duration-300">View Work</a>
+      <button type="button" data-tab="gallery" class="inline-block mt-16 text-cream/90 hover:text-cream border border-cream/40 hover:border-cream px-8 py-3 font-display text-sm tracking-widest uppercase transition-colors duration-300">View Work</button>
     </div>
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream/50">
       <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
@@ -123,23 +176,24 @@
     </div>
   </section>
 
-  <!-- Instant Clarity: Legal Jargon Translator -->
-  <section id="translator" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
+  <!-- About the Author -->
+  <section class="py-12 sm:py-16 px-6 sm:px-8 bg-cream" aria-labelledby="author-heading">
     <div class="max-w-2xl mx-auto">
-      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Instant Clarity</h2>
-      <p class="font-body text-navy/70 text-lg text-center mb-10">Type a legal term for a plain English definition.</p>
-      <div class="relative">
-        <input type="text" id="jargon-input" placeholder="e.g., Certiorari, Affidavit, Estoppel…" class="w-full px-5 py-4 font-body text-navy border-2 border-navy/20 bg-cream focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 rounded transition-colors placeholder:text-navy/40" aria-label="Search legal terms" />
-        <div id="jargon-result" class="mt-4 p-6 rounded bg-navy text-cream border border-navy/10 min-h-[120px] hidden" role="status" aria-live="polite">
-          <p class="font-display text-sm text-cream/80 uppercase tracking-widest mb-2">Plain English</p>
-          <p id="jargon-definition" class="font-body text-cream leading-relaxed"></p>
+      <div class="rounded-lg border border-navy/15 bg-cream-warm/80 shadow-sm overflow-hidden">
+        <div class="p-8 sm:p-10">
+          <h2 id="author-heading" class="font-display text-2xl sm:text-3xl text-navy mb-6">About the Author</h2>
+          <p class="font-body text-navy/85 text-lg leading-relaxed mb-8">
+            I am a Government major and Business Foundations minor at The University of Texas at Austin dedicated to the intersection of law policy and society. As a future law student I aim to combine my diverse professional experiences with my academic foundation to pursue a career in legal advocacy and public service using the law as a tool for fairness and justice.
+          </p>
+          <a href="https://www.linkedin.com/in/ravleen-gill-4179643a2/" target="_blank" rel="noopener noreferrer" class="inline-block font-display text-sm tracking-wide text-navy bg-cream border-2 border-navy/25 hover:bg-navy hover:text-cream hover:border-navy px-6 py-3 rounded transition-colors duration-200">View my Professional Journey on LinkedIn</a>
         </div>
-        <p id="jargon-hint" class="mt-4 font-body text-navy/50 text-sm">Try: Certiorari, Affidavit, Estoppel, Habeas Corpus, Amicus Curiae, Subpoena, Pro Bono, Deposition</p>
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- Legal Translation Gallery -->
+  <!-- Panel: Case Gallery -->
+  <div id="panel-gallery" class="tab-panel">
   <section id="gallery" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
@@ -163,8 +217,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Lucy v. Zehmer — “Farm on a Receipt”</h3>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Lucy v. Zehmer: “Farm on a Receipt”</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Two men signed a contract to sell a farm on a restaurant receipt. One later claimed he was “just joking.”</p>
                 <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> If you act like you are serious, the law says you are. Contracts are about outward actions, not secret thoughts.</p>
               </div>
@@ -188,7 +242,7 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
                 <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Dodge v. Ford</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Henry Ford wanted to use profits to help employees rather than pay dividends to shareholders.</p>
                 <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> Corporations exist primarily to make money for their owners (shareholders), not just for general social good.</p>
@@ -213,10 +267,10 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Liebeck v. McDonald’s — Hot Coffee</h3>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Liebeck v. McDonald’s: Hot Coffee</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> A woman sued over “hot coffee” burns.</p>
-                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This wasn’t a “frivolous” case; it was about a company serving coffee at 190°F (which causes 3rd-degree burns) and refusing to fix the safety hazard.</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This wasn’t a “frivolous” case; it was about a company serving coffee at 190°F (which causes third degree burns) and refusing to fix the safety hazard.</p>
               </div>
             </div>
           </div>
@@ -238,8 +292,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Policy</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Sarbanes-Oxley Act</h3>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Policy</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Sarbanes Oxley Act</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Policy:</strong> A massive set of rules created after the Enron scandal.</p>
                 <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> It ensures corporate leaders can’t claim “I didn’t know” when their company commits fraud; they are now legally responsible for the math.</p>
               </div>
@@ -263,7 +317,7 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Status</span>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Status</span>
                 <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Hmong Veterans’ Service Act</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Status:</strong> Hmong soldiers who fought for the U.S. in the “Secret War” were denied benefits for decades.</p>
                 <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This law simplified the path to citizenship, finally recognizing that “irregular service” in a hidden war counts as military service.</p>
@@ -280,7 +334,7 @@
               <div class="p-6 sm:p-8 flex flex-col flex-1">
                 <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">IP</span>
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
-                  “ … the licensor grants to the licensee a non-exclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
+                  “ … the licensor grants to the licensee a nonexclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
@@ -288,7 +342,7 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
                 <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">“Happy Birthday” Song Copyright</h3>
                 <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Agreement:</strong> A company claimed they owned the copyright to the song “Happy Birthday.”</p>
                 <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> The court ruled the song belongs to the public. You can’t charge people a “royalty” for a song that has been around so long it belongs to everyone.</p>
@@ -299,9 +353,40 @@
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- Milestones in Clarity: Advocacy Timeline -->
-  <section id="timeline" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream">
+  <!-- Panel: Clarity Glossary -->
+  <div id="panel-glossary" class="tab-panel">
+  <section id="glossary" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Clarity Glossary</h2>
+      <p class="font-body text-navy/70 text-lg text-center mb-12">Click a term for a plain English definition.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-10">
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="certiorari">Certiorari</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="affidavit">Affidavit</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="estoppel">Estoppel</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="habeas corpus">Habeas Corpus</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="amicus curiae">Amicus Curiae</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="subpoena">Subpoena</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="pro bono">Pro Bono</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="deposition">Deposition</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="tort">Tort</button>
+        <button type="button" class="glossary-term px-4 py-3 sm:px-5 sm:py-4 font-display text-navy bg-cream border-2 border-navy/20 rounded hover:border-navy hover:bg-navy hover:text-cream transition-all duration-200 text-left text-sm sm:text-base" data-term="liability">Liability</button>
+      </div>
+      <div id="clarity-card" class="clarity-card rounded-lg bg-navy text-cream border border-navy/10 overflow-hidden" role="region" aria-live="polite">
+        <div class="p-6 sm:p-8">
+          <p class="font-display text-sm text-cream/80 uppercase tracking-widest mb-2" id="clarity-term-label">Plain English</p>
+          <p id="clarity-definition" class="font-body text-cream leading-relaxed"></p>
+          <button type="button" id="clarity-card-close" class="mt-4 text-cream/80 hover:text-cream text-sm font-display uppercase tracking-wide" aria-label="Close definition">Close</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- Panel: Legal Timeline -->
+  <div id="panel-timeline" class="tab-panel overflow-y-auto">
+  <section id="timeline" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream min-h-[70vh]">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Milestones in Clarity</h2>
       <p class="font-body text-navy/70 text-lg text-center mb-16">Key moments in legal history that made the law more accessible.</p>
@@ -313,7 +398,7 @@
           <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
           <span class="font-display text-navy font-semibold text-lg">1963</span>
           <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Gideon v. Wainwright</h3>
-          <p class="font-body text-navy/80 leading-relaxed">The Supreme Court ruled that states must provide lawyers to criminal defendants who cannot afford one—making legal representation a right, not a privilege.</p>
+          <p class="font-body text-navy/80 leading-relaxed">The Supreme Court ruled that states must provide lawyers to criminal defendants who cannot afford one, making legal representation a right, not a privilege.</p>
         </div>
         <div class="timeline-item relative pl-16 sm:pl-20 pb-16 last:pb-0" data-year="1970s">
           <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
@@ -325,17 +410,18 @@
           <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
           <span class="font-display text-navy font-semibold text-lg">1966</span>
           <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Miranda v. Arizona</h3>
-          <p class="font-body text-navy/80 leading-relaxed">Police must inform people of their rights in plain language—the origin of “You have the right to remain silent”—so people can actually understand and use them.</p>
+          <p class="font-body text-navy/80 leading-relaxed">Police must inform people of their rights in plain language: the origin of “You have the right to remain silent”, so people can actually understand and use them.</p>
         </div>
         <div class="timeline-item relative pl-16 sm:pl-20 pb-0" data-year="2010">
           <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
           <span class="font-display text-navy font-semibold text-lg">2010</span>
           <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Plain Writing Act</h3>
-          <p class="font-body text-navy/80 leading-relaxed">U.S. federal law requiring agencies to use clear, straightforward language the public can understand—legalese is no longer acceptable by default.</p>
+          <p class="font-body text-navy/80 leading-relaxed">U.S. federal law requiring agencies to use clear, straightforward language the public can understand. Legalese is no longer acceptable by default.</p>
         </div>
       </div>
     </div>
   </section>
+  </div>
 
   <!-- CTA -->
   <section class="py-20 sm:py-28 px-6 sm:px-8 bg-navy">
@@ -354,12 +440,37 @@
     </div>
   </footer>
   <script>
-    document.querySelectorAll('.flip-card').forEach(card => {
+    (function() {
+      var panels = document.querySelectorAll('.tab-panel');
+      var navTabs = document.querySelectorAll('.nav-tab');
+      function switchTab(tabId) {
+        tabId = tabId || 'about';
+        panels.forEach(function(p) {
+          p.classList.toggle('is-active', p.id === 'panel-' + tabId);
+        });
+        navTabs.forEach(function(t) {
+          var isActive = t.getAttribute('data-tab') === tabId;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-current', isActive ? 'page' : null);
+        });
+      }
+      navTabs.forEach(function(tab) {
+        tab.addEventListener('click', function(e) {
+          e.preventDefault();
+          switchTab(tab.getAttribute('data-tab'));
+        });
+      });
+      document.querySelectorAll('button[data-tab]').forEach(function(btn) {
+        btn.addEventListener('click', function() { switchTab(btn.getAttribute('data-tab')); });
+      });
+    })();
+
+    document.querySelectorAll('.flip-card').forEach(function(card) {
       card.addEventListener('click', function() {
         this.classList.toggle('is-flipped');
       });
     });
-    /* Instant Clarity: Legal Jargon Translator */
+
     var legalTerms = {
       certiorari: 'A request for a higher court to review a lower court’s decision. Think of it as asking “Can I get a second opinion?”',
       affidavit: 'A written statement made under oath. You sign it, swear it’s true, and it can be used as evidence in court.',
@@ -371,33 +482,29 @@
       deposition: 'Out-of-court testimony given under oath, typically recorded. It’s like a practice round of questions before trial.'
     };
 
-    var input = document.getElementById('jargon-input');
-    var resultBox = document.getElementById('jargon-result');
-    var definitionEl = document.getElementById('jargon-definition');
+    var clarityCard = document.getElementById('clarity-card');
+    var clarityDefinition = document.getElementById('clarity-definition');
+    var clarityTermLabel = document.getElementById('clarity-term-label');
+    var clarityClose = document.getElementById('clarity-card-close');
 
-    if (input) {
-      input.addEventListener('input', function() {
-        var term = this.value.trim().toLowerCase();
-        if (!term) {
-          resultBox.classList.add('hidden');
-          return;
-        }
+    legalTerms.tort = 'A civil wrong that causes harm or loss. Unlike criminal law, the person who was wronged can sue for money or other relief: think car accidents, medical malpractice, or defamation.';
+    legalTerms.liability = 'Legal responsibility for something. If you\'re "liable," you can be required to pay damages or fix the harm you caused.';
+
+    document.querySelectorAll('.glossary-term').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var term = this.getAttribute('data-term');
         var definition = legalTerms[term];
-        if (!definition) {
-          var keys = Object.keys(legalTerms);
-          for (var i = 0; i < keys.length; i++) {
-            if (keys[i].indexOf(term) === 0) {
-              definition = legalTerms[keys[i]];
-              break;
-            }
-          }
-        }
-        if (definition) {
-          definitionEl.textContent = definition;
-          resultBox.classList.remove('hidden');
-        } else {
-          resultBox.classList.add('hidden');
-        }
+        if (!definition) return;
+        var label = term.charAt(0).toUpperCase() + term.slice(1);
+        if (term.indexOf(' ') !== -1) label = term.split(' ').map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
+        clarityTermLabel.textContent = label;
+        clarityDefinition.textContent = definition;
+        clarityCard.classList.add('is-open');
+      });
+    });
+    if (clarityClose) {
+      clarityClose.addEventListener('click', function() {
+        clarityCard.classList.remove('is-open');
       });
     }
 
