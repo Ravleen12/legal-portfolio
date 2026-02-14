@@ -50,10 +50,7 @@
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
     }
-    /* Hover only on non-touch devices so mobile tap-toggle isn't overridden by sticky :hover */
-    html:not(.touch-device) .flip-card:hover .flip-card-inner,
-    html:not(.touch-device) .flip-card:focus-within .flip-card-inner,
-    .flip-card.flip-card-flipped .flip-card-inner {
+    .flip-card.is-flipped .flip-card-inner {
       transform: rotateY(180deg);
     }
     .flip-card-front,
@@ -88,6 +85,14 @@
     .flip-card-back .flip-card-content .flip-card-label {
       color: rgba(248, 246, 241, 0.7);
     }
+
+    /* Timeline: dots grow when scrolled into view */
+    .timeline-dot {
+      transform: scale(0.75);
+    }
+    .timeline-item.is-visible .timeline-dot {
+      transform: scale(1.25);
+    }
   </style>
 </head>
 <body class="font-body text-navy bg-cream antialiased">
@@ -118,12 +123,28 @@
     </div>
   </section>
 
+  <!-- Instant Clarity: Legal Jargon Translator -->
+  <section id="translator" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Instant Clarity</h2>
+      <p class="font-body text-navy/70 text-lg text-center mb-10">Type a legal term for a plain English definition.</p>
+      <div class="relative">
+        <input type="text" id="jargon-input" placeholder="e.g., Certiorari, Affidavit, Estoppel…" class="w-full px-5 py-4 font-body text-navy border-2 border-navy/20 bg-cream focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/20 rounded transition-colors placeholder:text-navy/40" aria-label="Search legal terms" />
+        <div id="jargon-result" class="mt-4 p-6 rounded bg-navy text-cream border border-navy/10 min-h-[120px] hidden" role="status" aria-live="polite">
+          <p class="font-display text-sm text-cream/80 uppercase tracking-widest mb-2">Plain English</p>
+          <p id="jargon-definition" class="font-body text-cream leading-relaxed"></p>
+        </div>
+        <p id="jargon-hint" class="mt-4 font-body text-navy/50 text-sm">Try: Certiorari, Affidavit, Estoppel, Habeas Corpus, Amicus Curiae, Subpoena, Pro Bono, Deposition</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Legal Translation Gallery -->
   <section id="gallery" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">Legal Translation Gallery</h2>
-        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Hover or tap a card to flip: legalese → plain English.</p>
+        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Tap a card to flip: legalese → plain English.</p>
       </div>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card 1: Contract Law → Lucy v. Zehmer -->
@@ -136,7 +157,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … the manifestation of mutual assent requisite to contract formation is measured by an objective standard; the secret, unexpressed intent of a party is immaterial. A meeting of the minds is determined by the outward expression of the parties … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -161,7 +182,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … a business corporation is organized and carried on primarily for the profit of the stockholders. The powers of the directors are to be employed for that end. The discretion of directors is to be exercised in the choice of means to attain that end … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -186,7 +207,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … liability for defective products may attach under theories of negligence, strict liability, or breach of warranty. A defendant may be liable where it knew or should have known that its product posed an unreasonable risk of harm … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -211,7 +232,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … internal controls over financial reporting … shall include policies and procedures that provide reasonable assurance regarding the reliability of financial reporting … and that management’s assessment of such controls is properly documented … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -236,7 +257,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … naturalization for certain aliens who served in the United States Armed Forces or in certain irregular forces; treatment of service in irregular forces as service in the United States Armed Forces for purposes of naturalization … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -261,7 +282,7 @@
                 <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
                   “ … the licensor grants to the licensee a non-exclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
                 </p>
-                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+                <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
               </div>
             </div>
             <div class="flip-card-back">
@@ -275,6 +296,43 @@
             </div>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones in Clarity: Advocacy Timeline -->
+  <section id="timeline" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Milestones in Clarity</h2>
+      <p class="font-body text-navy/70 text-lg text-center mb-16">Key moments in legal history that made the law more accessible.</p>
+      <div class="relative">
+        <!-- Vertical line -->
+        <div class="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-navy/20" aria-hidden="true"></div>
+        <!-- Timeline items -->
+        <div class="timeline-item relative pl-16 sm:pl-20 pb-16" data-year="1963">
+          <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
+          <span class="font-display text-navy font-semibold text-lg">1963</span>
+          <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Gideon v. Wainwright</h3>
+          <p class="font-body text-navy/80 leading-relaxed">The Supreme Court ruled that states must provide lawyers to criminal defendants who cannot afford one—making legal representation a right, not a privilege.</p>
+        </div>
+        <div class="timeline-item relative pl-16 sm:pl-20 pb-16 last:pb-0" data-year="1970s">
+          <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
+          <span class="font-display text-navy font-semibold text-lg">1970s</span>
+          <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">The Plain English Movement</h3>
+          <p class="font-body text-navy/80 leading-relaxed">Lawyers and consumer advocates began pushing for clearer legal language in contracts, government forms, and consumer documents.</p>
+        </div>
+        <div class="timeline-item relative pl-16 sm:pl-20 pb-16 last:pb-0" data-year="1966">
+          <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
+          <span class="font-display text-navy font-semibold text-lg">1966</span>
+          <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Miranda v. Arizona</h3>
+          <p class="font-body text-navy/80 leading-relaxed">Police must inform people of their rights in plain language—the origin of “You have the right to remain silent”—so people can actually understand and use them.</p>
+        </div>
+        <div class="timeline-item relative pl-16 sm:pl-20 pb-0" data-year="2010">
+          <div class="timeline-dot absolute left-4 sm:left-6 w-4 h-4 rounded-full bg-navy border-4 border-cream shadow-sm transition-transform duration-500 origin-center" aria-hidden="true"></div>
+          <span class="font-display text-navy font-semibold text-lg">2010</span>
+          <h3 class="font-display text-xl sm:text-2xl text-navy mt-1 mb-2">Plain Writing Act</h3>
+          <p class="font-body text-navy/80 leading-relaxed">U.S. federal law requiring agencies to use clear, straightforward language the public can understand—legalese is no longer acceptable by default.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -296,18 +354,68 @@
     </div>
   </footer>
   <script>
-    (function() {
-      var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      if (isTouch) {
-        document.documentElement.classList.add('touch-device');
-      }
-
-      document.querySelectorAll('.flip-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-          this.classList.toggle('flip-card-flipped');
-        });
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.classList.toggle('is-flipped');
       });
-    })();
+    });
+
+    /* Instant Clarity: Legal Jargon Translator */
+    var legalTerms = {
+      certiorari: 'A request for a higher court to review a lower court’s decision. Think of it as asking “Can I get a second opinion?”',
+      affidavit: 'A written statement made under oath. You sign it, swear it’s true, and it can be used as evidence in court.',
+      estoppel: 'You can’t change your story later. If you’ve already said or done something that someone relied on, you’re generally stuck with it.',
+      'habeas corpus': 'A legal action that demands: “Show me why you’re holding this person.” It protects against unlawful detention.',
+      'amicus curiae': '“Friend of the court.” A person or group that isn’t part of the case but offers expertise to help the judge decide.',
+      subpoena: 'A court order requiring you to show up to testify or to hand over documents. Ignoring it can mean serious consequences.',
+      'pro bono': 'Legal work done for free, usually for clients who can’t afford a lawyer. Latin for “for the good.”',
+      deposition: 'Out-of-court testimony given under oath, typically recorded. It’s like a practice round of questions before trial.'
+    };
+
+    var input = document.getElementById('jargon-input');
+    var resultBox = document.getElementById('jargon-result');
+    var definitionEl = document.getElementById('jargon-definition');
+
+    if (input) {
+      input.addEventListener('input', function() {
+        var term = this.value.trim().toLowerCase();
+        if (!term) {
+          resultBox.classList.add('hidden');
+          return;
+        }
+        var definition = legalTerms[term];
+        if (!definition) {
+          var keys = Object.keys(legalTerms);
+          for (var i = 0; i < keys.length; i++) {
+            if (keys[i].indexOf(term) === 0) {
+              definition = legalTerms[keys[i]];
+              break;
+            }
+          }
+        }
+        if (definition) {
+          definitionEl.textContent = definition;
+          resultBox.classList.remove('hidden');
+        } else {
+          resultBox.classList.add('hidden');
+        }
+      });
+    }
+
+    /* Milestones: Dots grow when scrolled into view */
+    var timelineItems = document.querySelectorAll('.timeline-item');
+    if (typeof IntersectionObserver !== 'undefined') {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          } else {
+            entry.target.classList.remove('is-visible');
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
+      timelineItems.forEach(function(item) { observer.observe(item); });
+    }
   </script>
 </body>
 </html>
