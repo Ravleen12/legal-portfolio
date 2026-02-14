@@ -37,6 +37,57 @@
     html { scroll-behavior: smooth; }
     .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
     .font-body { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* 3D Flip Card */
+    .flip-card {
+      perspective: 1000px;
+      min-height: 320px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    /* Hover only on non-touch devices so mobile tap-toggle isn't overridden by sticky :hover */
+    html:not(.touch-device) .flip-card:hover .flip-card-inner,
+    html:not(.touch-device) .flip-card:focus-within .flip-card-inner,
+    .flip-card.flip-card-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      min-height: 320px;
+      left: 0;
+      top: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(14, 39, 68, 0.12);
+      box-shadow: 0 2px 8px rgba(14, 39, 68, 0.06);
+    }
+    .flip-card-front {
+      background: #f8f6f1;
+      z-index: 2;
+    }
+    .flip-card-back {
+      background: #0f2744;
+      transform: rotateY(180deg);
+      z-index: 1;
+    }
+    .flip-card-back .flip-card-content {
+      color: #f8f6f1;
+    }
+    .flip-card-back .flip-card-content p {
+      color: rgba(248, 246, 241, 0.88);
+    }
+    .flip-card-back .flip-card-content .flip-card-label {
+      color: rgba(248, 246, 241, 0.7);
+    }
   </style>
 </head>
 <body class="font-body text-navy bg-cream antialiased">
@@ -62,7 +113,7 @@
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-navy mb-6">Making the law accessible</h2>
       <p class="font-body text-lg sm:text-xl text-navy/80 leading-relaxed">
-        Legal translation is more than words—it’s clarity, precision, and trust. I turn dense legal language into clear, accurate text so clients and readers can act with confidence.
+        Legal translation is more than words. It’s clarity, precision, and trust. I turn dense legal language into clear, accurate text so clients and readers can act with confidence.
       </p>
     </div>
   </section>
@@ -72,79 +123,156 @@
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">Legal Translation Gallery</h2>
-        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Selected case studies: from legalese to plain language.</p>
+        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Hover or tap a card to flip: legalese → plain English.</p>
       </div>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Case Card 1 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">Contract Law</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">Commercial Lease Agreements</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Translated and simplified multi-party commercial lease terms for a property developer, ensuring non-English-speaking stakeholders could review key obligations and deadlines.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Legalese → clear timelines & obligations</p>
+        <!-- Card 1: Contract Law → Lucy v. Zehmer -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Contract Law</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … the manifestation of mutual assent requisite to contract formation is measured by an objective standard; the secret, unexpressed intent of a party is immaterial. A meeting of the minds is determined by the outward expression of the parties … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Lucy v. Zehmer — “Farm on a Receipt”</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Two men signed a contract to sell a farm on a restaurant receipt. One later claimed he was “just joking.”</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> If you act like you are serious, the law says you are. Contracts are about outward actions, not secret thoughts.</p>
+              </div>
+            </div>
           </div>
         </article>
-        <!-- Case Card 2 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy-light group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">Corporate</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">M&A Due Diligence Summaries</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Produced executive summaries of due diligence reports for cross-border acquisitions, distilling legal and regulatory risks into actionable briefs for C-suite decision-makers.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Technical reports → executive briefs</p>
+
+        <!-- Card 2: Corporate → Dodge v. Ford -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Corporate</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … a business corporation is organized and carried on primarily for the profit of the stockholders. The powers of the directors are to be employed for that end. The discretion of directors is to be exercised in the choice of means to attain that end … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Dodge v. Ford</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Henry Ford wanted to use profits to help employees rather than pay dividends to shareholders.</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> Corporations exist primarily to make money for their owners (shareholders), not just for general social good.</p>
+              </div>
+            </div>
           </div>
         </article>
-        <!-- Case Card 3 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">Litigation</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">Court Opinions & Judgments</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Translated and summarized court opinions for a legal research platform, preserving legal reasoning while making holdings and implications accessible to practitioners and students.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Judgments → structured summaries</p>
+
+        <!-- Card 3: Litigation → Liebeck v. McDonald's -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Litigation</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … liability for defective products may attach under theories of negligence, strict liability, or breach of warranty. A defendant may be liable where it knew or should have known that its product posed an unreasonable risk of harm … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Liebeck v. McDonald’s — Hot Coffee</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> A woman sued over “hot coffee” burns.</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This wasn’t a “frivolous” case; it was about a company serving coffee at 190°F (which causes 3rd-degree burns) and refusing to fix the safety hazard.</p>
+              </div>
+            </div>
           </div>
         </article>
-        <!-- Case Card 4 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy-light group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">Compliance</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">Regulatory Notices & Policies</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Turned regulatory updates and internal compliance policies into plain-language guides for frontline staff, reducing misinterpretation and improving audit readiness.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Regulations → staff-ready guides</p>
+
+        <!-- Card 4: Compliance → Sarbanes-Oxley -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Compliance</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … internal controls over financial reporting … shall include policies and procedures that provide reasonable assurance regarding the reliability of financial reporting … and that management’s assessment of such controls is properly documented … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Policy</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Sarbanes-Oxley Act</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Policy:</strong> A massive set of rules created after the Enron scandal.</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> It ensures corporate leaders can’t claim “I didn’t know” when their company commits fraud; they are now legally responsible for the math.</p>
+              </div>
+            </div>
           </div>
         </article>
-        <!-- Case Card 5 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">Immigration</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">Visa & Status Documentation</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Translated and explained visa requirements, application steps, and appeal procedures for individuals and families, so they could prepare applications and meet deadlines with confidence.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Official language → step-by-step clarity</p>
+
+        <!-- Card 5: Immigration → Hmong Veterans' Service Act -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Immigration</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … naturalization for certain aliens who served in the United States Armed Forces or in certain irregular forces; treatment of service in irregular forces as service in the United States Armed Forces for purposes of naturalization … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Status</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Hmong Veterans’ Service Act</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Status:</strong> Hmong soldiers who fought for the U.S. in the “Secret War” were denied benefits for decades.</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This law simplified the path to citizenship, finally recognizing that “irregular service” in a hidden war counts as military service.</p>
+              </div>
+            </div>
           </div>
         </article>
-        <!-- Case Card 6 -->
-        <article class="group bg-cream border border-cream-dark/60 shadow-sm hover:shadow-lg hover:border-navy/20 transition-all duration-300 overflow-hidden">
-          <div class="h-2 bg-navy-light group-hover:h-3 transition-all duration-300" aria-hidden="true"></div>
-          <div class="p-8">
-            <span class="font-display text-sm text-navy/60 tracking-widest uppercase">IP & Licensing</span>
-            <h3 class="font-display text-2xl text-navy mt-2 mb-3">Licensing & Royalty Terms</h3>
-            <p class="font-body text-navy/80 leading-relaxed text-sm">
-              Clarified licensing and royalty provisions in IP agreements for creatives and startups, highlighting payment triggers, exclusivity, and termination rights in plain English.
-            </p>
-            <p class="mt-4 font-display text-navy text-sm italic">Dense clauses → key terms at a glance</p>
+
+        <!-- Card 6: IP → Happy Birthday copyright -->
+        <article class="flip-card" tabindex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
+              <div class="p-6 sm:p-8 flex flex-col flex-1">
+                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">IP</span>
+                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                  “ … the licensor grants to the licensee a non-exclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
+                </p>
+                <p class="font-display text-navy/50 text-xs mt-4">Hover or tap to flip</p>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
+              <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real-World Case</span>
+                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">“Happy Birthday” Song Copyright</h3>
+                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Agreement:</strong> A company claimed they owned the copyright to the song “Happy Birthday.”</p>
+                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> The court ruled the song belongs to the public. You can’t charge people a “royalty” for a song that has been around so long it belongs to everyone.</p>
+              </div>
+            </div>
           </div>
         </article>
       </div>
@@ -156,7 +284,7 @@
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-cream mb-4">Let’s work together</h2>
       <p class="font-body text-cream/80 text-lg mb-8">Need legal documents translated or explained? Get in touch.</p>
-      <a href="mailto:hello@legalclarity.example.com" class="inline-block bg-cream text-navy font-display font-semibold px-8 py-3 tracking-wide hover:bg-cream-warm transition-colors duration-300">Get in touch</a>
+      <a href="mailto:gillravleenkaur05@gmail.com" class="inline-block bg-cream text-navy font-display font-semibold px-8 py-3 tracking-wide hover:bg-cream-warm transition-colors duration-300">Get in touch</a>
     </div>
   </section>
 
@@ -167,5 +295,19 @@
       <p class="font-body text-navy/60 text-sm">Bridging the gap between complex law and everyday understanding.</p>
     </div>
   </footer>
+  <script>
+    (function() {
+      var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if (isTouch) {
+        document.documentElement.classList.add('touch-device');
+      }
+
+      document.querySelectorAll('.flip-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          this.classList.toggle('flip-card-flipped');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
