@@ -110,6 +110,8 @@
       height: 2px;
       background: #f8f6f1;
     }
+    .nav-brand:hover { color: #f8f6f1; }
+    .nav-brand.active::after { display: none; }
     .tab-panel {
       display: none;
     }
@@ -138,11 +140,14 @@
   <!-- Sticky Navigation -->
   <nav class="sticky top-0 z-50 bg-navy border-b border-cream/10 shadow-sm" aria-label="Main">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-4">
-        <a href="#about" class="nav-tab active font-display text-cream/90 text-sm sm:text-base tracking-wide" data-tab="about" id="nav-about">About</a>
-        <a href="#gallery" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="gallery" id="nav-gallery">Case Gallery</a>
-        <a href="#glossary" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="glossary" id="nav-glossary">Clarity Glossary</a>
-        <a href="#timeline" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="timeline" id="nav-timeline">Legal Timeline</a>
+      <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4">
+        <a href="#about" class="nav-brand nav-tab font-display text-cream font-bold text-lg sm:text-xl tracking-wide" data-tab="about" id="nav-brand">LEGAL CLARITY</a>
+        <div class="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
+          <a href="#about" class="nav-tab active font-display text-cream/90 text-sm sm:text-base tracking-wide" data-tab="about" id="nav-about">About</a>
+          <a href="#contact" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="contact" id="nav-contact">Get a Translation</a>
+          <a href="#gallery" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="gallery" id="nav-gallery">Case Examples</a>
+          <a href="#history" class="nav-tab font-display text-cream/70 hover:text-cream text-sm sm:text-base tracking-wide transition-colors" data-tab="history" id="nav-history">Legal History &amp; Terms</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -154,12 +159,12 @@
     <div class="absolute inset-0 bg-navy" aria-hidden="true"></div>
     <div class="absolute inset-0 opacity-[0.06]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');" aria-hidden="true"></div>
     <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center">
-      <p class="font-display text-cream/80 text-sm sm:text-base tracking-[0.35em] uppercase mb-4">Legal Clarity</p>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-cream leading-tight mb-6">
-        Bridging the gap between complex law and everyday understanding.
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-tight mb-6 tracking-tight">
+        LEGAL CLARITY
       </h1>
-      <p class="font-display text-cream text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight">Ravleen Gill</p>
-      <button type="button" data-tab="gallery" class="inline-block mt-16 text-cream/90 hover:text-cream border border-cream/40 hover:border-cream px-8 py-3 font-display text-sm tracking-widest uppercase transition-colors duration-300">View Work</button>
+      <p class="font-display text-cream/90 text-xl sm:text-2xl md:text-3xl font-medium tracking-tight max-w-2xl mx-auto">
+        Turning dense legal language into clear, accurate text so you can act with confidence.
+      </p>
     </div>
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream/50">
       <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
@@ -170,18 +175,20 @@
   <section class="py-20 sm:py-28 px-6 sm:px-8 bg-cream">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-navy mb-6">Making the law accessible</h2>
-      <p class="font-body text-lg sm:text-xl text-navy/80 leading-relaxed">
-        Legal translation is more than words. It’s clarity, precision, and trust. I turn dense legal language into clear, accurate text so clients and readers can act with confidence.
+      <p class="font-body text-lg sm:text-xl text-navy/80 leading-relaxed mb-8">
+        Legal jargon creates a barrier to justice. Since 2024, I have helped individuals and small businesses across Texas turn complex contracts and litigation filings into simple, actionable English. My process uses advanced language models trained on case law, supervised by a dedicated team so every translation is precise and legally sound.
       </p>
+      <button type="button" data-tab="gallery" class="inline-block text-navy bg-cream border-2 border-navy/25 hover:bg-navy hover:text-cream hover:border-navy px-6 py-3 font-display text-sm tracking-wide transition-colors duration-200">View my recent work</button>
     </div>
   </section>
 
-  <!-- About the Author -->
+  <!-- About Me -->
   <section class="py-12 sm:py-16 px-6 sm:px-8 bg-cream" aria-labelledby="author-heading">
     <div class="max-w-2xl mx-auto">
       <div class="rounded-lg border border-navy/15 bg-cream-warm/80 shadow-sm overflow-hidden">
         <div class="p-8 sm:p-10">
-          <h2 id="author-heading" class="font-display text-2xl sm:text-3xl text-navy mb-6">About the Author</h2>
+          <h2 id="author-heading" class="font-display text-2xl sm:text-3xl text-navy mb-2">About Me</h2>
+          <p class="font-display text-navy text-xl font-medium mb-6">Ravleen Gill</p>
           <p class="font-body text-navy/85 text-lg leading-relaxed mb-8">
             I am a Government major and Business Foundations minor at The University of Texas at Austin dedicated to the intersection of law policy and society. As a future law student I aim to combine my diverse professional experiences with my academic foundation to pursue a career in legal advocacy and public service using the law as a tool for fairness and justice.
           </p>
@@ -192,23 +199,45 @@
   </section>
   </div>
 
-  <!-- Panel: Case Gallery -->
+  <!-- Panel: Get a Translation -->
+  <div id="panel-contact" class="tab-panel">
+  <section id="contact" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm min-h-[70vh] flex flex-col justify-center">
+    <div class="max-w-xl mx-auto w-full">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Get a Translation</h2>
+      <p class="font-body text-navy/70 text-lg text-center mb-10">Send a message and we will get back to you.</p>
+      <form class="rounded-lg border border-navy/15 bg-cream shadow-sm p-8 sm:p-10" action="mailto:gillravleenkaur05@gmail.com" method="GET" target="_blank" rel="noopener noreferrer">
+        <input type="hidden" name="subject" value="Legal Clarity: Translation request from website" />
+        <label for="contact-name" class="block font-display text-navy font-medium mb-2">Name</label>
+        <input type="text" id="contact-name" name="name" required class="w-full px-4 py-3 font-body text-navy bg-cream border-2 border-navy/20 rounded mb-6 focus:border-navy focus:outline-none" placeholder="Your name" />
+        <label for="contact-email" class="block font-display text-navy font-medium mb-2">Email</label>
+        <input type="email" id="contact-email" name="email" required class="w-full px-4 py-3 font-body text-navy bg-cream border-2 border-navy/20 rounded mb-6 focus:border-navy focus:outline-none" placeholder="your@email.com" />
+        <label for="contact-message" class="block font-display text-navy font-medium mb-2">Message</label>
+        <textarea id="contact-message" name="body" rows="6" required class="w-full px-4 py-3 font-body text-navy bg-cream border-2 border-navy/20 rounded mb-6 focus:border-navy focus:outline-none resize-y" placeholder="Describe your legal document or translation need..."></textarea>
+        <button type="submit" class="w-full sm:w-auto bg-navy text-cream font-display font-semibold px-8 py-3 tracking-wide hover:bg-navy-light transition-colors duration-200">Send message</button>
+      </form>
+      <p class="font-body text-navy/60 text-sm text-center mt-4">Your email client will open with the message pre-filled. You can also email directly at <a href="mailto:gillravleenkaur05@gmail.com" class="text-navy underline hover:no-underline">gillravleenkaur05@gmail.com</a>.</p>
+    </div>
+  </section>
+  </div>
+
+  <!-- Panel: Case Examples -->
   <div id="panel-gallery" class="tab-panel">
   <section id="gallery" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
-        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">Legal Translation Gallery</h2>
-        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Tap a card to flip: legalese → plain English.</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3">Case Examples</h2>
+        <p class="font-body text-navy/70 text-lg max-w-2xl mx-auto">Tap a card to flip: legalese to plain English.</p>
       </div>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card 1: Contract Law → Lucy v. Zehmer -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Contract Law</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Contract Law</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Lucy v. Zehmer</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … the manifestation of mutual assent requisite to contract formation is measured by an objective standard; the secret, unexpressed intent of a party is immaterial. A meeting of the minds is determined by the outward expression of the parties … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -217,10 +246,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Lucy v. Zehmer: “Farm on a Receipt”</h3>
-                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Two men signed a contract to sell a farm on a restaurant receipt. One later claimed he was “just joking.”</p>
-                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> If you act like you are serious, the law says you are. Contracts are about outward actions, not secret thoughts.</p>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Translation</span>
+                <p class="text-sm leading-relaxed mt-2"><strong class="text-cream">Translation:</strong> If you act like you are serious, the law says you are. Contracts are about outward actions, not secret thoughts. (Two men signed a contract to sell a farm on a restaurant receipt; one later claimed he was “just joking.”)</p>
               </div>
             </div>
           </div>
@@ -228,12 +255,13 @@
 
         <!-- Card 2: Corporate → Dodge v. Ford -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Corporate Law</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Corporate</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Dodge v. Ford</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … a business corporation is organized and carried on primarily for the profit of the stockholders. The powers of the directors are to be employed for that end. The discretion of directors is to be exercised in the choice of means to attain that end … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -242,10 +270,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Dodge v. Ford</h3>
-                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> Henry Ford wanted to use profits to help employees rather than pay dividends to shareholders.</p>
-                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> Corporations exist primarily to make money for their owners (shareholders), not just for general social good.</p>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Translation</span>
+                <p class="text-sm leading-relaxed mt-2"><strong class="text-cream">Translation:</strong> Corporations exist primarily to make money for their owners (shareholders), not just for general social good. (Henry Ford wanted to use profits to help employees rather than pay dividends to shareholders.)</p>
               </div>
             </div>
           </div>
@@ -253,12 +279,13 @@
 
         <!-- Card 3: Litigation → Liebeck v. McDonald's -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Litigation</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Litigation</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Liebeck v. McDonald's: Hot Coffee</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … liability for defective products may attach under theories of negligence, strict liability, or breach of warranty. A defendant may be liable where it knew or should have known that its product posed an unreasonable risk of harm … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -267,10 +294,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">Liebeck v. McDonald’s: Hot Coffee</h3>
-                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Case:</strong> A woman sued over “hot coffee” burns.</p>
-                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> This wasn’t a “frivolous” case; it was about a company serving coffee at 190°F (which causes third degree burns) and refusing to fix the safety hazard.</p>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Translation</span>
+                <p class="text-sm leading-relaxed mt-2"><strong class="text-cream">Translation:</strong> This was not a frivolous case; it was about a company serving coffee at 190°F (which causes third degree burns) and refusing to fix the safety hazard.</p>
               </div>
             </div>
           </div>
@@ -278,12 +303,13 @@
 
         <!-- Card 4: Compliance → Sarbanes-Oxley -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Compliance</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Compliance</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Sarbanes Oxley Act</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … internal controls over financial reporting … shall include policies and procedures that provide reasonable assurance regarding the reliability of financial reporting … and that management’s assessment of such controls is properly documented … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -303,12 +329,13 @@
 
         <!-- Card 5: Immigration → Hmong Veterans' Service Act -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Immigration</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">Immigration</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Hmong Veterans' Service Act</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … naturalization for certain aliens who served in the United States Armed Forces or in certain irregular forces; treatment of service in irregular forces as service in the United States Armed Forces for purposes of naturalization … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -328,12 +355,13 @@
 
         <!-- Card 6: IP → Happy Birthday copyright -->
         <article class="flip-card" tabindex="0">
+          <p class="font-display text-sm text-navy/70 tracking-[0.2em] uppercase mb-3">Intellectual Property</p>
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="h-1.5 bg-navy-light flex-shrink-0" aria-hidden="true"></div>
               <div class="p-6 sm:p-8 flex flex-col flex-1">
-                <span class="font-display text-xs text-navy/60 tracking-[0.2em] uppercase">IP</span>
-                <p class="font-body text-navy mt-4 flex-1 text-sm leading-relaxed italic">
+                <span class="font-display text-navy font-medium text-sm">Happy Birthday Song Copyright</span>
+                <p class="font-body text-navy mt-3 flex-1 text-sm leading-relaxed"><strong>Excerpt of case material:</strong>
                   “ … the licensor grants to the licensee a nonexclusive right to exploit the copyrighted work subject to proprietary royalty provisions, fee schedules, and accounting and audit rights … ”
                 </p>
                 <p class="font-display text-navy/50 text-xs mt-4">Tap to flip</p>
@@ -342,10 +370,8 @@
             <div class="flip-card-back">
               <div class="h-1.5 bg-cream/20 flex-shrink-0" aria-hidden="true"></div>
               <div class="flip-card-content p-6 sm:p-8 flex flex-col flex-1">
-                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Real World Case</span>
-                <h3 class="font-display text-xl sm:text-2xl text-cream mt-2 mb-4">“Happy Birthday” Song Copyright</h3>
-                <p class="text-sm leading-relaxed mb-3"><strong class="text-cream">The Agreement:</strong> A company claimed they owned the copyright to the song “Happy Birthday.”</p>
-                <p class="text-sm leading-relaxed"><strong class="text-cream">The Clarity:</strong> The court ruled the song belongs to the public. You can’t charge people a “royalty” for a song that has been around so long it belongs to everyone.</p>
+                <span class="flip-card-label font-display text-xs tracking-[0.2em] uppercase">Translation</span>
+                <p class="text-sm leading-relaxed mt-2"><strong class="text-cream">Translation:</strong> The court ruled the song belongs to the public. You cannot charge people a "royalty" for a song that has been around so long it belongs to everyone. (A company had claimed they owned the copyright to the song "Happy Birthday.")</p>
               </div>
             </div>
           </div>
@@ -355,8 +381,8 @@
   </section>
   </div>
 
-  <!-- Panel: Clarity Glossary -->
-  <div id="panel-glossary" class="tab-panel">
+  <!-- Panel: Legal History & Terms (Glossary + Timeline) -->
+  <div id="panel-history" class="tab-panel">
   <section id="glossary" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream-warm">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Clarity Glossary</h2>
@@ -382,10 +408,7 @@
       </div>
     </div>
   </section>
-  </div>
 
-  <!-- Panel: Legal Timeline -->
-  <div id="panel-timeline" class="tab-panel overflow-y-auto">
   <section id="timeline" class="py-20 sm:py-28 px-6 sm:px-8 bg-cream min-h-[70vh]">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-navy mb-3 text-center">Milestones in Clarity</h2>
@@ -423,7 +446,7 @@
   </section>
   </div>
 
-  <!-- CTA -->
+  <!-- CTA (visible when on any tab) -->
   <section class="py-20 sm:py-28 px-6 sm:px-8 bg-navy">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-cream mb-4">Let’s work together</h2>
@@ -450,8 +473,9 @@
         });
         navTabs.forEach(function(t) {
           var isActive = t.getAttribute('data-tab') === tabId;
-          t.classList.toggle('active', isActive);
-          t.setAttribute('aria-current', isActive ? 'page' : null);
+          var isBrand = t.classList.contains('nav-brand');
+          t.classList.toggle('active', isActive && !isBrand);
+          t.setAttribute('aria-current', isActive && !isBrand ? 'page' : null);
         });
       }
       navTabs.forEach(function(tab) {
